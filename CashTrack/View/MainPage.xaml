@@ -1,5 +1,100 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:CashTrack.Model"
              x:Class="CashTrack.View.MainPage">
+    <RefreshView IsRefreshing="False">
+
+        <Grid RowDefinitions="Auto,*">
+            <VerticalStackLayout BackgroundColor="Purple" 
+                                 Padding="10"
+                                 VerticalOptions="FillAndExpand"
+                                 HorizontalOptions="FillAndExpand">
+                <Label Text="Mounth" HorizontalOptions="Center"/>
+                <Label Text="Category 1: 2454$" />
+                <Label Text="Category 2: 2454$" />
+                <Label Text="Category 3: 2454$" />
+                <Label Text="Category 4: 2454$" />
+                <Label Text="Category 5: 2454$" />
+                <Label Text="Category 6: 2454$" />
+                <Label Text="Category 6: 2454$" />
+            </VerticalStackLayout>
+
+            <CollectionView Grid.Row="1">
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type model:Expense}">
+                        <model:Expense
+                            Name="Expense1"
+                            Category="Home"
+                            Ammount="24.34"
+                            Date="07-05-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense2"
+                            Category="Restaurant"
+                            Ammount="14.34"
+                            Date="12-07-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense3"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense5"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense6"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense7"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense8"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense8"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense8"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense8"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                        <model:Expense
+                            Name="Expense8"
+                            Category="Work"
+                            Ammount="29"
+                            Date="12-09-2023 13:25"/>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Expense">
+                        <Grid Padding="0" ColumnDefinitions="200,*">
+                            <VerticalStackLayout Padding="10">
+                                    <Label Text="{Binding Name}" />
+                                    <Label Text="{Binding Ammount, StringFormat='{0}$'}"/>
+                                    <Label Text="{Binding Date}"/>
+                            </VerticalStackLayout>
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="End" Grid.Column="1" Padding="10">
+                                <Label Text="{Binding Category}"/>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </RefreshView>
 </ContentPage>
