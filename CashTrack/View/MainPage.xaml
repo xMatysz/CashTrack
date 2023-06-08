@@ -9,19 +9,19 @@
         IsRefreshing="{Binding IsRefreshing}"
         Command="{Binding GetExpensesCommand}">
 
-        <Grid RowDefinitions="Auto,*">
+        <Grid RowDefinitions="Auto,*,Auto">
             <VerticalStackLayout BackgroundColor="Purple" 
                                  Padding="10"
                                  VerticalOptions="FillAndExpand"
                                  HorizontalOptions="FillAndExpand">
                 <Label Text="Month" HorizontalOptions="Center"/>
-                <Label Text="Category 1: 2454$" />
-                <Label Text="Category 2: 2454$" />
-                <Label Text="Category 3: 2454$" />
-                <Label Text="Category 4: 2454$" />
-                <Label Text="Category 5: 2454$" />
-                <Label Text="Category 6: 2454$" />
-                <Label Text="Category 6: 2454$" />
+                <CollectionView ItemsSource="{Binding ExpenseCategories}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding .}"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </VerticalStackLayout>
 
             <CollectionView Grid.Row="1" 
@@ -42,6 +42,16 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button Grid.Row="2"
+                    HeightRequest="50"
+                    Margin="10"
+                    Text="Add Expense"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="#c203fc"
+                    BackgroundColor="#321d38">
+                
+            </Button>
         </Grid>
     </RefreshView>
 </ContentPage>
