@@ -1,9 +1,12 @@
-﻿namespace CashTrack.View;
+﻿using CashTrack.ViewModel;
+
+namespace CashTrack.View;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage()
+    public MainPage(ExpensesViewModel expensesViewModel)
     {
         InitializeComponent();
+        BindingContext = expensesViewModel;
     }
 }

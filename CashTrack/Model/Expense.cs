@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CashTrack.Model
 {
-    internal class Expense
+    public class Expense
     {
         public string Name { get; set; }
 
         public string Category { get; set; }
 
-        public double Ammount { get; set; }
+        public double Amount { get; set; }
 
         public DateTime Date { get; set; }
     }

@@ -1,4 +1,8 @@
-﻿namespace CashTrack;
+﻿using CashTrack.Services;
+using CashTrack.View;
+using CashTrack.ViewModel;
+
+namespace CashTrack;
 
 public static class MauiProgram
 {
@@ -13,6 +17,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+        builder.Services.AddSingleton<ExpenseService>();
+		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<ExpensesViewModel>();
+
+        return builder.Build();
 	}
 }
