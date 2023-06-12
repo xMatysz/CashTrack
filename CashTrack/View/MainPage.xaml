@@ -49,8 +49,8 @@
                     FontSize="20"
                     FontAttributes="Bold"
                     TextColor="#c203fc"
-                    BackgroundColor="#321d38">
-                
+                    BackgroundColor="#321d38"
+                    Command="{Binding GoToAddExpenseCommand}">
             </Button>
         </Grid>
     </RefreshView>

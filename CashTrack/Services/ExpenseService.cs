@@ -36,7 +36,7 @@ namespace CashTrack.Services
             if (expenseList.Any())
                 return expenseList;
 
-            using var stream = await FileSystem.OpenAppPackageFileAsync("Data.json");
+            using var stream = await FileSystem.OpenAppPackageFileAsync("data.json");
             using var reader = new StreamReader(stream);
             var contents = await reader.ReadToEndAsync();
             expenseList = JsonSerializer.Deserialize<List<Expense>>(contents);

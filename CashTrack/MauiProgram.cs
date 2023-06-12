@@ -18,8 +18,12 @@ public static class MauiProgram
 			});
 
         builder.Services.AddSingleton<ExpenseService>();
+
 		builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<ExpensesViewModel>();
+
+		builder.Services.AddSingleton<AddExpense>();
+		builder.Services.AddSingleton<AddExpenseViewModel>();
 
         return builder.Build();
 	}

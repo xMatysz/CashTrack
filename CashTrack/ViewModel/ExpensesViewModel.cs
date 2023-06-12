@@ -2,8 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
-using System.Text.Json;
 using CashTrack.Services;
+using CashTrack.View;
 
 namespace CashTrack.ViewModel
 {
@@ -63,6 +63,12 @@ namespace CashTrack.ViewModel
                 IsBusy = false;
                 IsRefreshing = false;
             }
+        }
+
+        [RelayCommand]
+        async Task GoToAddExpense()
+        {
+            await Shell.Current.GoToAsync(nameof(AddExpense), true);
         }
     }
 }
