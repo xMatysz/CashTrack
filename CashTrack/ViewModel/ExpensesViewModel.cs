@@ -12,10 +12,10 @@ namespace CashTrack.ViewModel
         public ObservableCollection<Expense> Expenses { get; } = new();
         public ObservableCollection<string> ExpenseCategories { get; set;  } = new();
 
-        private ExpenseService expenseService;
+        private readonly ExpenseService _expenseService;
         public ExpensesViewModel(ExpenseService service)
         {
-            expenseService = service;
+            _expenseService = service;
 
             SetUp();
         }
@@ -25,7 +25,7 @@ namespace CashTrack.ViewModel
             if (ExpenseCategories.Any())
                 ExpenseCategories.Clear();
 
-            var categories = await expenseService.GetExpensesCategoriesAsync();
+            var categories = await _expenseService.GetExpensesCategoriesAsync();
 
             foreach (var expenseCategory in categories)
             {
@@ -34,7 +34,7 @@ namespace CashTrack.ViewModel
         }
 
         [ObservableProperty]
-        private bool isRefreshing;
+        private bool _isRefreshing;
         
         [RelayCommand]
         async Task GetExpenses()
@@ -46,7 +46,7 @@ namespace CashTrack.ViewModel
                 if (Expenses.Any())
                     Expenses.Clear();
 
-                var result = await expenseService.GetExpensesAsync();
+                var result = await _expenseService.GetExpensesAsync();
 
                 foreach (var item in result)
                 {

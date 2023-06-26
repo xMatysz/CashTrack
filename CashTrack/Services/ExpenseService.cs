@@ -6,44 +6,44 @@ namespace CashTrack.Services
 {
     public class ExpenseService
     {
-        private readonly HttpClient httpClient;
+        private readonly HttpClient _httpClient;
 
-        private List<Expense> expenseList = new();
-        private List<string> expenseCategoriesList = new();
+        private List<Expense> _expenseList = new();
+        private List<string> _expenseCategoriesList = new();
 
         public ExpenseService()
         {
-            httpClient = new HttpClient();
+            _httpClient = new HttpClient();
         }
 
         public async Task<List<string>> GetExpensesCategoriesAsync()
         {
 
-            if (expenseCategoriesList.Any())
-                return expenseCategoriesList;
+            if (_expenseCategoriesList.Any())
+                return _expenseCategoriesList;
 
             using var stream = await FileSystem.OpenAppPackageFileAsync("categories.json");
             using var reader = new StreamReader(stream);
             var contents = await reader.ReadToEndAsync();
-            expenseCategoriesList = JsonSerializer.Deserialize<List<string>>(contents);
+            _expenseCategoriesList = JsonSerializer.Deserialize<List<string>>(contents);
 
-            return expenseCategoriesList;
+            return _expenseCategoriesList;
         }
 
         public async Task<List<Expense>> GetExpensesAsync()
         {
 
-            if (expenseList.Any())
-                return expenseList;
+            if (_expenseList.Any())
+                return _expenseList;
 
             using var stream = await FileSystem.OpenAppPackageFileAsync("data.json");
             using var reader = new StreamReader(stream);
             var contents = await reader.ReadToEndAsync();
-            expenseList = JsonSerializer.Deserialize<List<Expense>>(contents);
+            _expenseList = JsonSerializer.Deserialize<List<Expense>>(contents);
 
-            expenseList.ForEach(x => x.Category = expenseCategoriesList[int.Parse(x.Category)]);
+            _expenseList.ForEach(x => x.Category = _expenseCategoriesList[int.Parse(x.Category)]);
 
-            return expenseList;
+            return _expenseList;
         }
     }
 }
