@@ -20,15 +20,16 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.MapGet("/expenses", ([FromServices] ExpenseRepository repo) =>
+app.MapGet("/expenses", ([FromServices] ExpenseRepository repo) => repo.GetAll());
+app.MapGet("/expenses/{id}", ([FromServices] ExpenseRepository repo, Guid id) =>
 {
-	return repo.GetAll();
+	var expense = repo.GetById(id);
+	return expense is not null ? Results.Ok(expense) : Results.NotFound();
+});
+app.MapPost("/expenses", ([FromServices]ExpenseRepository repo, [FromBody]Expense expense) =>
+{
+	repo.Create(expense);
+	return Results.Created($"/expenses/{expense.Id}", expense);
 });
 
 app.Run();
